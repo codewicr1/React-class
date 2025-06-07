@@ -1,54 +1,54 @@
-import { useState, useRef } from "react";
-import "./App.css";
-import ReactDice, { ReactDiceRef } from "react-dice-complete";
-
+import { useState } from "react";
+import "./App.css"
+import React, { useRef } from 'react'
+import ReactDice, { ReactDiceRef } from 'react-dice-complete'
 function App() {
   const [playerDice, setPlayerDice] = useState();
   const [cpuDice, setCpuDice] = useState();
   const [winnerTxt, setWinnerTxt] = useState();
-
-  const reactDice = useRef<ReactDiceRef>(null);
-
-  // This function runs after dice finish rolling
+  // func: roll dice
   const rollDice = (total, values) => {
-    // First two dice for player
-    const playerTotal = values[0] + values[1];
-    // Next two dice for CPU
-    const cpuTotal = values[2] + values[3];
-
-    setPlayerDice(playerTotal);
-    setCpuDice(cpuTotal);
-
-    if (playerTotal > cpuTotal) {
+    // const playerRoll = Math.ceil(Math.random() * 6);
+    // const cpuRoll = Math.ceil(Math.random() * 6);
+    // array in the const
+    const playerRoll = values[0] + values[1];
+    const cpuRoll = values[2] + values[3];
+    setPlayerDice(playerRoll);
+    setCpuDice(cpuRoll);
+    if (playerRoll > cpuRoll) {
       setWinnerTxt("Congrats, you win!");
-    } else if (cpuTotal > playerTotal) {
-      setWinnerTxt("Sorry, you lost!");
-    } else {
-      setWinnerTxt("You Tied!");
+    } else if (playerRoll === cpuRoll) {
+      setWinnerTxt("It's a tie!");
+    } else if (playerRoll < cpuRoll) {
+      setWinnerTxt("You loose!");
     }
-  };
-
-  // This function starts the roll
+  }
+  const reactDice = useRef<ReactDiceRef>(null)
+  const rollDone = (totalValue: number, values: number[]) => {
+    console.log('individual die values array:', values)
+    console.log('total dice value:', totalValue)
+  }
   const rollAll = () => {
-    reactDice.current?.rollAll();
-  };
-
+    reactDice.current?.rollAll()
+  }
   return (
     <div className="container">
       <h1>Dice Game vs CPU</h1>
       <button onClick={rollAll}>Roll Dice</button>
-
+      {/* use variables in html */}
+      <h6>Your Roll: {playerDice}</h6>
+      <h6>CPU Roll: {cpuDice}</h6>
       <ReactDice
-        numDice={4} // 2 for player, 2 for CPU
+        numDice={4}
         ref={reactDice}
+        //rollDone={rollDone}
+        dotColor="#fff"
+        faceColor="#000000"
         rollDone={rollDice}
       />
-
-      <h6>Your Total: {playerDice}</h6>
-      <h6>CPU Total: {cpuDice}</h6>
       <h2>{winnerTxt}</h2>
     </div>
   );
 }
+export default App
 
-export default App;

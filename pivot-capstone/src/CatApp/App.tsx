@@ -3,7 +3,7 @@ import "./App.css";
 import Lottie from "lottie-react";
 import CatLottie from "../assets/catImage.json";
 
-export default function Main() {
+export default function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [catImage, setCatImage] = useState(null);
   const [whatCatSays, setWhatCatSays] = useState("");
@@ -65,3 +65,4 @@ export default function Main() {
     </div>
   );
 }
+
