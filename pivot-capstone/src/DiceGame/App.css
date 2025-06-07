@@ -6,7 +6,7 @@
 }
 
 .overlay {
-  position: absolute;
+   /* position: absolute; */
   top: 0;
   left: 0;
   right: 0;
@@ -14,6 +14,7 @@
   background-color: rgba(0, 0, 0, 0.5); /* semi-transparent hotpink */
 }
 .dice-game {background-image: url("https://thumbs.dreamstime.com/b/craps-table-texture-11846894.jpg");
+  color: hotpink; 
   background-size: cover;       /* makes image fill the screen */
   background-repeat: no-repeat; /* prevents image from repeating */
   background-position: center;  /* centers the image */

@@ -32,21 +32,34 @@ function App() {
     reactDice.current?.rollAll()
   }
   return (
-    <div className="container">
-      <h1>Dice Game vs CPU</h1>
-      <button onClick={rollAll}>Roll Dice</button>
-      {/* use variables in html */}
-      <h6>Your Roll: {playerDice}</h6>
-      <h6>CPU Roll: {cpuDice}</h6>
-      <ReactDice
-        numDice={4}
-        ref={reactDice}
-        //rollDone={rollDone}
-        dotColor="#fff"
-        faceColor="#000000"
-        rollDone={rollDice}
-      />
-      <h2>{winnerTxt}</h2>
+    <div className="dice-game">
+      <div className="overlay">
+        <div className="container">
+          <h1>Dice Game vs CPU</h1>
+          <button onClick={rollAll}>Roll Dice</button>
+          {/* use variables in html */}
+          <h6>Your Roll: {playerDice}</h6>
+          <h6>CPU Roll: {cpuDice}</h6>  
+          <ReactDice
+            numDice={2}
+            ref={reactDice}
+            //rollDone={rollDone}
+            dotColor="#000000"
+            faceColor="#fff"
+
+            rollDone={rollDice}
+          />
+          <ReactDice
+            numDice={2}
+            ref={reactDice}
+            //rollDone={rollDone}
+            dotColor="#fff"
+            faceColor="#000000"
+            rollDone={rollDice}
+          />
+          <h2>{winnerTxt}</h2>
+        </div>
+      </div>
     </div>
   );
 }
